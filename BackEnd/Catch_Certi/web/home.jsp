@@ -4,6 +4,7 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page import="javax.xml.transform.Result" %>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!--
 Todo : 회사 이름 길어질때 해결책
@@ -118,7 +119,9 @@ Todo : 회사 이름 길어질때 해결책
             <div class="u-border-2 u-border-grey-75 u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white u-list-item-1">
               <div class="u-container-layout u-similar-container u-valign-bottom u-container-layout-1">
                 <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="774"></div>
-                <% pstmt=conn.prepareStatement("select * from user");
+                <%
+
+                  pstmt=conn.prepareStatement("select * from user");
                   ResultSet rs=pstmt.executeQuery();
                   rs.next();
                 %>
@@ -158,26 +161,43 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
                 <th class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-2">recommend work &amp; certificate</th>
               </tr>
             </thead>
+            <%
+              Map<String,Integer> ranking=new HashMap<>();
+              while(rs.next()) {
+                String work1=rs.getString("work1");
+                String work2=rs.getString("work2");
+                ranking.put(work1,ranking.containsKey(work1)?ranking.get(work1)+1:1);
+                ranking.put(work2,ranking.containsKey(work2)?ranking.get(work2)+1:1);
+              }
+              List<Map.Entry<String, Integer>> rank = new ArrayList<>(ranking.entrySet());
+              Collections.sort(rank, new Comparator<Map.Entry<String, Integer>>() {
+                @Override
+                public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                  return o2.getValue().compareTo(o1.getValue());
+                }
+              });
+
+            %>
             <tbody class="u-table-alt-grey-15 u-table-body u-white u-table-body-1">
 
               <tr style="height: 46px;">
-                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-3">1. 잉여</td>
+                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-3">1. <%= rank.get(0).getKey() %></td>
                 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"> <%= session.getAttribute("user_id") %> </td>
               </tr>
               <tr style="height: 44px;">
-                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-5">2. ㅇㅅㅇ</td>
+                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-5">2. <%= rank.get(1).getKey() %></td>
                 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-6"></td>
               </tr>
               <tr style="height: 44px;">
-                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-7">3. ㅡㅅㅡ</td>
+                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-7">3. <%= rank.get(2).getKey() %></td>
                 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-8"></td>
               </tr>
               <tr style="height: 44px;">
-                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-9">4. ㅠㅅㅠ</td>
+                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-9">4. <%= rank.get(3).getKey() %></td>
                 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-10"></td>
               </tr>
               <tr style="height: 44px;">
-                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-table-cell u-table-cell-11">5.&nbsp;</td>
+                <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-table-cell u-table-cell-11">5.&nbsp;<%= rank.get(4).getKey() %></td>
                 <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-12"></td>
               </tr>
             </tbody>
@@ -187,7 +207,8 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="sec-33fe">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <% pstmt=conn.prepareStatement("select * from jobs ");
+        <%
+          pstmt=conn.prepareStatement("select * from jobs ");
           rs= pstmt.executeQuery();
           rs.next();
         %>
