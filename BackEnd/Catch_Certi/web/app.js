@@ -55,3 +55,41 @@ const let_change = () => {
   let signup = document.getElementById('signup');
   signup.classList.toggle('signup_form');
 }
+
+var count = 0;   								
+
+function CountChecked(field){ 					
+	if (field.checked) {						
+		count += 1;								
+	}
+	else {										
+		count -= 1;								
+	}
+	
+  if(count==1){
+    alert("하나 더 선택하세요.")
+  }
+
+	if (count > 2) {						
+		alert("최대 2개까지만 선택가능합니다!");	
+	field.checked = false;					
+	count -= 1;									
+	}
+}
+
+function OnSave() {
+  var cob_check = document.querySelectorAll('input[name="cobook"]:checked').length;
+  if(cob_check == 0) {
+      alert('선택해주세요.')
+      return false;
+  }
+}
+
+function check_form(f) {
+  var checked = document.querySelectorAll('[name="interest[]"]:checked');
+  if ( !checked.length ) {
+    alert("직무 2개를 선택해주세요.");
+    return false;
+  }
+  return true;
+}
