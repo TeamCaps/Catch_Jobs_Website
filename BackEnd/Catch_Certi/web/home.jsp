@@ -56,8 +56,6 @@ Todo : 회사 이름 길어질때 해결책
     PreparedStatement pstmt =null;
     String sql;
     session=request.getSession();
-    //PreparedStatement pstmt = conn.prepareStatement("select * from jobs");
-    //ResultSet rs = pstmt.executeQuery();
   %>
   <header class="u-align-left u-clearfix u-header u-section-row-container" id="sec-ba49">
     <div class="u-section-rows">
@@ -121,7 +119,7 @@ Todo : 회사 이름 길어질때 해결책
                 <div alt="" class="u-image u-image-circle u-image-1" data-image-width="1280" data-image-height="774"></div>
                 <%
 
-                  pstmt=conn.prepareStatement("select * from user");
+                  pstmt=conn.prepareStatement("select * from users");
                   ResultSet rs=pstmt.executeQuery();
                   rs.next();
                 %>
