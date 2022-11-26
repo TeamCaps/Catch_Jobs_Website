@@ -10,11 +10,11 @@
     String userID = request.getParameter("email");
     String userPassword = request.getParameter("pass");
     // DB연결에 필요한 변수 선언
-    String url = "jdbc:mysql://localhost:3306/cpas";
+    String url = "jdbc:mysql://15.164.192.100:52817/caps";
     String uid = "caps";
     String upw = "1234";
     try {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
     } catch (ClassNotFoundException e) {
         System.err.println("JDBC 드라이버를 로드하는데에 문제 발생" + e.getMessage());
         e.printStackTrace();
@@ -24,7 +24,7 @@
     PreparedStatement pstmt = null;
     ResultSet rs = null;
 
-    String sql = "select * from user where userID = ? and userPassword = ?";
+    String sql = "select * from users where userID = ? and userPassword = ?";
 
     try{
         // conn 생성
@@ -44,7 +44,7 @@
             session.setAttribute("user_id", id);
             session.setAttribute("user_name", name);
 
-            response.sendRedirect("./Home.jsp"); // 페이지이동
+            response.sendRedirect("./home.jsp"); // 페이지이동
 
         } else{ // 로그인 실패
             response.sendRedirect("./login.jsp"); // 실패 페이지

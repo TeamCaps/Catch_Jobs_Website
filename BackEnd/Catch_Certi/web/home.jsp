@@ -51,7 +51,7 @@ Todo : 회사 이름 길어질때 해결책
     String jdbcUrl = "jdbc:mysql://15.164.192.100:52817/caps";
     String dbId = "caps";
     String dbPass = "1234";
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
     conn = DriverManager.getConnection(jdbcUrl,dbId ,dbPass );
     PreparedStatement pstmt =null;
     String sql;

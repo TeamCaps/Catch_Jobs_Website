@@ -14,11 +14,11 @@
   int i=4;
 
   // DB연결에 필요한 변수 선언
-  String url = "jdbc:mysql://192.168.0.188:3306/caps";
+  String url = "jdbc:mysql://15.164.192.100:52817/caps";
   String uid = "caps";
   String upw = "1234";
   try {
-    Class.forName("com.mysql.jdbc.Driver");
+    Class.forName("com.mysql.cj.jdbc.Driver");
   } catch (ClassNotFoundException e) {
     System.err.println("JDBC 드라이버를 로드하는데에 문제 발생" + e.getMessage());
     e.printStackTrace();
@@ -28,7 +28,7 @@
   PreparedStatement pstmt = null;
   ResultSet rs = null;
 
-  String sql = "insert into user values(?, ?, ?, ?, ?)";
+  String sql = "insert into users values(?, ?, ?, ?, ?)";
 
   try{
     // conn 생성
