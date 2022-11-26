@@ -48,7 +48,7 @@ Todo : 회사 이름 길어질때 해결책
   <%
     request.setCharacterEncoding("utf-8");
     Connection conn = null;
-    String jdbcUrl = "jdbc:mysql://192.168.0.188:3306/caps";
+    String jdbcUrl = "jdbc:mysql://15.164.192.100:52817/caps";
     String dbId = "caps";
     String dbPass = "1234";
     Class.forName("com.mysql.jdbc.Driver");
