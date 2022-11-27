@@ -61,6 +61,11 @@ function CountChecked(field){
           
             $(".zt-skill-bar > div ").each(function (i) {
                 var $this  = $(this),
+
+
+
+
+
                     skills = $this.data('width');
   
                 $this.css({'width' : skills + '%'});

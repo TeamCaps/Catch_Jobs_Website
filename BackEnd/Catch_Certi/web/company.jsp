@@ -6,7 +6,24 @@
 <%@ page import="javax.xml.transform.Result" %>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <html style="font-size: 16px;" lang="en"><head>
+  <%
+    request.setCharacterEncoding("utf-8");
+    Integer cp_id=Integer.parseInt(request.getParameter("company"));
+    Connection conn = null;
+    String jdbcUrl = "jdbc:mysql://15.164.192.100:52817/caps";
+    String dbId = "caps";
+    String dbPass = "1234";
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    conn = DriverManager.getConnection(jdbcUrl,dbId ,dbPass );
+    PreparedStatement pstmt =null;
+    ResultSet rs=null;
+    pstmt=conn.prepareStatement("select * from jobs where Num=?");
+    pstmt.setInt(1,cp_id);
+    rs= pstmt.executeQuery();
+    rs.next();
+  %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="Caps, ​Sweets">
@@ -69,10 +86,13 @@
         <div class="u-image u-section-row u-image-1" id="sec-37e8" data-image-width="1980" data-image-height="1200">
           <div class="u-clearfix u-sheet u-sheet-2">
             <h1 class="u-text u-text-default u-text-1">
-              <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="Home.html">Caps<br>
+              <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
               </a>
             </h1>
-            <a href="#" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>
+            <form action="logout.jsp" method="post">
+              <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2" onclick="logout()">LOGOUT</a>
+            </form>
+
             <p class="u-text u-text-default u-text-white u-text-2">당신의 직무를 찾아드립니다~<br>
             </p>
           </div>
@@ -85,115 +105,44 @@
       </div></header>
     <section class="u-clearfix u-container-align-center u-gradient u-section-1" id="carousel_365b">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-align-center u-text u-text-body-alt-color u-text-1"> Sweets</h1>
+        <h1 class="u-align-center u-text u-text-body-alt-color u-text-1"> <%=rs.getString("cp_name")%></h1>
         <div class="u-expanded-width u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
               <div class="u-container-layout u-similar-container u-container-layout-1">
-                <h4 class="u-text u-text-2">Cookies</h4>
+                <h4 class="u-text u-text-2">Introduction of  '<%=rs.getString("cp_name")%>'</h4>
                 <ul class="u-custom-list u-text u-text-3">
+                  <br>
+                  <%
+                    StringTokenizer st=new StringTokenizer(rs.getString("intro_work"),"\n");
+                    while(st.hasMoreTokens()){
+                  %>
+
                   <li>
                     <div class="u-list-icon">
                       <div>—</div>
-                    </div> Biscotti
+                    </div> <%=st.nextToken()%>
                   </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Chocolate Chip
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oatmeal Pecan
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oat Ginger Bar
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Seasonal specials
-                  </li>
-                </ul>
-                <ul class="u-custom-list u-text u-text-4">
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div> Biscotti
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Chocolate Chip
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oatmeal Pecan
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oat Ginger Bar
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Seasonal specials
-                  </li>
-                </ul>
+                    <%
+                    }
+                    %>
               </div>
             </div>
             <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2">
               <div class="u-container-layout u-similar-container u-container-layout-2">
-                <h4 class="u-text u-text-5">Scones</h4>
+                <h4 class="u-text u-text-5">Preferential treatment</h4>
                 <ul class="u-custom-list u-text u-text-6">
+                  <%
+                    st=new StringTokenizer(rs.getString("prefer"),"\n");
+                    while(st.hasMoreTokens()){
+                  %>
                   <li>
                     <div class="u-list-icon">
                       <div>—</div>
-                    </div> Biscotti
+                    </div><%=st.nextToken()%>
                   </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Chocolate Chip
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oatmeal Pecan
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oat Ginger Bar
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Seasonal specials
-                  </li>
-                </ul>
-                <ul class="u-custom-list u-text u-text-7">
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div> Classic butter scone
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Fresh fruit buttermilk scones
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Handmade scones
-                  </li>
-                </ul>
+                  <%}%>
+                 </ul>
               </div>
             </div>
             <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3">
