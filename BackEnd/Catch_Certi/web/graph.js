@@ -1,4 +1,3 @@
-
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'pie',
@@ -39,16 +38,21 @@ var count1 = 0;
 var width1 = 0;	
 
 var count2 = 0;   	
-var width2 = 0;	
 
-function CountChecked(field){ 					
-  if (field.checked) {						
+var width2 = 0;
+
+function CountChecked(field){
+    if (field.checked) {
     count += 1;								
   }
   else {										
     count -= 1;								
   }
-  var width = count / 8.0 * 100;
+
+  var width = count / i1 * 100;
+  width=width.toFixed(2);
+  width*=1;
+
 
   $('div').data('width',width);
 
@@ -61,10 +65,6 @@ function CountChecked(field){
           
             $(".zt-skill-bar > div ").each(function (i) {
                 var $this  = $(this),
-
-
-
-
 
                     skills = $this.data('width');
   
@@ -96,7 +96,11 @@ function CountChecked1(field){
   else {										
     count1 -= 1;								
   }
-  var width1 = count1 / 8.0 * 100;
+
+  var width1 = count1 / i2 * 100;
+  width1=width1.toFixed(2);
+  width1*=1;
+  console.log(width1);
 
   $('div').data('width',width1);
 
@@ -132,14 +136,21 @@ function CountChecked1(field){
 }
 
 
-function CountChecked2(field){ 					
+
+function CountChecked2(field){
+
   if (field.checked) {						
     count2 += 1;								
   }
   else {										
     count2 -= 1;								
   }
-  var width2 = count2 / 8.0 * 100;
+
+  var width2 = count2 / i3 * 100;
+  width2=width2.toFixed(2);
+  width2*=1;
+
+
 
   $('div').data('width',width2);
 

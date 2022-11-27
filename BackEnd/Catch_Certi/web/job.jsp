@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -5,6 +6,7 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="javax.xml.transform.Result" %>
 <%@page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html style="font-size: 16px;" lang="en"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +22,68 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
+
+
+    <%
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        PreparedStatement pstmt1 = null;
+        ResultSet rs = null;
+        ResultSet rs1 = null;
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String jdbcDriver = "jdbc:mysql://15.164.192.100:52817/caps";
+        String dbUser = "caps";
+        String dbPass = "1234";
+
+
+        conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
+
+        pstmt = conn.prepareStatement("select * from learn where work_name=?");
+        pstmt.setString(1,request.getParameter("work"));
+
+        rs = pstmt.executeQuery();
+
+
+//        while (rs.next())
+//        {
+//            StringTokenizer sec_tok = new StringTokenizer(rs.getString("section"),"섹션");
+//            System.out.println(sec_tok);
+//            while (sec_tok.hasMoreTokens()){
+//                System.out.println(sec_tok.nextToken());
+//            }
+//        }
+
+//        ArrayList<String> name = new ArrayList<>();
+//        ArrayList<Integer> index = new ArrayList<>();
+//
+//        Map<String,Integer> ranking=new HashMap<>();
+//
+//
+//        while(rs1.next()) {
+//            //String skill=rs1.getString("skill");
+//            //System.out.println(rs1.getString("skill"));
+//            StringTokenizer skill_tok = new StringTokenizer(rs1.getString("skill"),"\n");
+//            System.out.println("\n"+skill_tok.nextToken());
+//            while (skill.hasMoreTokens()) {
+//                ranking.put(skill.nextToken(), ranking.containsKey(skill.nextToken()) ? ranking.get(skill.nextToken()) + 1 : 1);
+//            }
+//        }
+//        List<Map.Entry<String, Integer>> rank = new ArrayList<>(ranking.entrySet());
+//
+//        System.out.println(rank);
+//
+//        Collections.sort(rank, new Comparator<Map.Entry<String, Integer>>() {
+//            @Override
+//            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+//                return o2.getValue().compareTo(o1.getValue());
+//            }
+//        });
+    %>
+
+
+
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -70,10 +133,12 @@
         <div class="u-image u-section-row u-image-1" id="sec-37e8" data-image-width="1980" data-image-height="1200">
           <div class="u-clearfix u-sheet u-sheet-2">
             <h1 class="u-text u-text-default u-text-1">
-              <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="Home.html">Caps<br>
+
+              <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
               </a>
             </h1>
-            <a href="#" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>
+            <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>
+
             <p class="u-text u-text-default u-text-white u-text-2">당신의 직무를 찾아드립니다~<br>
             </p>
           </div>
@@ -86,7 +151,9 @@
       </div></header>
     <section class="u-clearfix u-gradient u-section-1" id="carousel_43ab">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h1 class="u-align-center u-text u-text-body-alt-color u-text-1"> JOB</h1>
+
+        <h1 class="u-align-center u-text u-text-body-alt-color u-text-1"><%=request.getParameter("work")%> </h1>
+
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-1">
@@ -105,38 +172,22 @@
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
                     <legend class="cho2">Choose your Specifications</legend>
                     <div class ="firstc">
-                      <div class="cho3">
+
+                        <script>
+                            var i1=0;
+                        </script>
+                        <%
+                            rs.next();
+                            StringTokenizer sec_tok = new StringTokenizer(rs.getString("section"),"\n");
+                            while (sec_tok.hasMoreTokens()) {%>
+                        <script>
+                            i1++
+                        </script>
+                        <div class="cho3">
                        <input type="checkbox" input onclick="CountChecked(this)" id="coding" name="interest[]" value="server"/>
-                       <label for="coding">서버 개발</label>
+                       <label for="coding"><%=sec_tok.nextToken()%></label>
                       </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="music" name="interest[]" value="back" />
-                       <label for="music">백 엔드</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="art" name="interest[]" value="front"/>
-                       <label for="art">프론트 엔드</label>
-                     </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="sports" name="interest[]" value="secret"/>
-                       <label for="sports">정보 보안</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="coding" name="interest[]" value="game"/>
-                       <label for="coding">게임</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="music" name="interest[]" value="app"/>
-                       <label for="music">앱</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="art" name="interest[]" value="ai"/>
-                       <label for="art">AI</label>
-                     </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked(this)" id="sports" name="interest[]" value="database"/>
-                       <label for="sports">데이터베이스 관리자</label>
-                      </div>
+                        <%}%>
                     </div>
                   </fieldset>
                 </div>
@@ -158,40 +209,25 @@
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
                     <legend class="cho2">Choose your Specifications</legend>
-                    <div class ="firstc">
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="coding" name="interest[]" value="server"/>
-                       <label for="coding">서버 개발</label>
+
+                      <div class ="firstc">
+                          <script>
+                              var i2=0;
+                          </script>
+                          <%
+                              rs.next();
+                              StringTokenizer sec_tok1 = new StringTokenizer(rs.getString("section"),"\n");
+                              while (sec_tok1.hasMoreTokens()) {%>
+                          <script>
+                              i2++
+                          </script>
+                          <div class="cho3">
+                              <input type="checkbox" input onclick="CountChecked1(this)" id="coding" name="interest[]" value="server"/>
+                              <label for="coding"><%=sec_tok1.nextToken()%></label>
+                          </div>
+                          <%}%>
                       </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="music" name="interest[]" value="back" />
-                       <label for="music">백 엔드</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="art" name="interest[]" value="front"/>
-                       <label for="art">프론트 엔드</label>
-                     </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="sports" name="interest[]" value="secret"/>
-                       <label for="sports">정보 보안</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="coding" name="interest[]" value="game"/>
-                       <label for="coding">게임</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="music" name="interest[]" value="app"/>
-                       <label for="music">앱</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="art" name="interest[]" value="ai"/>
-                       <label for="art">AI</label>
-                     </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked1(this)" id="sports" name="interest[]" value="database"/>
-                       <label for="sports">데이터베이스 관리자</label>
-                      </div>
-                    </div>
+
                   </fieldset>
                 </div>
                 <div class="zt-span6 last">
@@ -212,40 +248,26 @@
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
                     <legend class="cho2">Choose your Specifications</legend>
-                    <div class ="firstc">
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="coding" name="interest[]" value="server"/>
-                       <label for="coding">서버 개발</label>
+
+                      <div class ="firstc">
+                          <script>
+                              var i3=0;
+                          </script>
+                          <%
+                              rs.next();
+                              StringTokenizer sec_tok2 = new StringTokenizer(rs.getString("section"),"\n");
+                              while (sec_tok2.hasMoreTokens()) {%>
+                          <script>
+                              i3++
+                          </script>
+
+                          <div class="cho3">
+                              <input type="checkbox" input onclick="CountChecked2(this)" id="coding" name="interest[]" value="server"/>
+                              <label for="coding"><%=sec_tok2.nextToken()%></label>
+                          </div>
+                          <%}%>
                       </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="music" name="interest[]" value="back" />
-                       <label for="music">백 엔드</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="art" name="interest[]" value="front"/>
-                       <label for="art">프론트 엔드</label>
-                     </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="sports" name="interest[]" value="secret"/>
-                       <label for="sports">정보 보안</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="coding" name="interest[]" value="game"/>
-                       <label for="coding">게임</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="music" name="interest[]" value="app"/>
-                       <label for="music">앱</label>
-                      </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="art" name="interest[]" value="ai"/>
-                       <label for="art">AI</label>
-                     </div>
-                      <div class="cho3">
-                       <input type="checkbox" input onclick="CountChecked2(this)" id="sports" name="interest[]" value="database"/>
-                       <label for="sports">데이터베이스 관리자</label>
-                      </div>
-                    </div>
+
                   </fieldset>
                 </div>
                 <div class="zt-span6 last">
@@ -261,9 +283,10 @@
         </div>
       </div>
     </section>
-    
-    
-    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c678"><div class="u-clearfix u-sheet u-sheet-1">
+
+
+  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c678"><div class="u-clearfix u-sheet u-sheet-1">
+
         <p class="u-small-text u-text u-text-variant u-text-1">Copyright © Caps2022</p>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">

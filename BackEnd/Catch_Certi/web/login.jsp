@@ -61,46 +61,50 @@
                                 <legend class="cho2">Choose your interests</legend>
                                 <div class ="firstc">
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="coding" name="interest[]" value="coding"/>
-                                        <label for="coding">Coding</label>
+
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="서버/백엔드" name="interest[]" value="서버/백엔드"/>
+                                        <label for="서버/백엔드">서버/백엔드</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="music" name="interest[]" value="music" />
-                                        <label for="music">Music</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="프론트엔드" name="interest[]" value="프론트엔드" />
+                                        <label for="프론트엔드">프론트엔드</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="art" name="interest[]" value="art"/>
-                                        <label for="art">Art</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="안드로이드 앱" name="interest[]" value="안드로이드 앱"/>
+                                        <label for="안드로이드 앱">안드로이드 앱</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="sports" name="interest[]" value="sports"/>
-                                        <label for="sports">Sports</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="머신러닝" name="interest[]" value="머신러닝"/>
+                                        <label for="머신러닝">머신러닝</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="cooking" name="interest[]" value="cooking"/>
-                                        <label for="cooking">Cooking</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="데이터 엔지니어" name="interest[]" value="데이터 엔지니어"/>
+                                        <label for="데이터 엔지니어">데이터 엔지니어</label>
+
                                     </div>
                                 </div>
                                 <div class ="secondc">
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="coding" name="interest[]" value="coding"/>
-                                        <label for="coding">Coding</label>
+
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="모바일 게임" name="interest[]" value="모바일 게임"/>
+                                        <label for="모바일 게임">모바일 게임</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="music" name="interest[]" value="music"/>
-                                        <label for="music">Music</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="게임 클라이언트" name="interest[]" value="게임 클라이언트"/>
+                                        <label for="게임 클라이언트">게임 클라이언트</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="art" name="interest[]" value="art"/>
-                                        <label for="art">Art</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="인공지능(AI)" name="interest[]" value="인공지능(AI)"/>
+                                        <label for="인공지능(AI)">인공지능(AI)</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="sports" name="interest[]" value="sports"/>
-                                        <label for="sports">Sports</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="아이폰 앱" name="interest[]" value="아이폰 앱"/>
+                                        <label for="아이폰 앱">아이폰 앱</label>
                                     </div>
                                     <div class="cho3">
-                                        <input type="checkbox" input onclick="CountChecked(this)" id="cooking" name="interest[]" value="cooking" />
-                                        <label for="cooking">Cooking</label>
+                                        <input type="checkbox" input onclick="CountChecked(this)" id="블록체인" name="interest[]" value="블록체인" />
+                                        <label for="블록체인">블록체인</label>
+
                                     </div>
                                 </div>
                             </fieldset>

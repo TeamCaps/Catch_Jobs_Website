@@ -105,11 +105,14 @@
       </div></header>
     <section class="u-clearfix u-container-align-center u-gradient u-section-1" id="carousel_365b">
       <div class="u-clearfix u-sheet u-sheet-1">
+
         <h1 class="u-align-center u-text u-text-body-alt-color u-text-1"> <%=rs.getString("cp_name")%></h1>
+
         <div class="u-expanded-width u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
               <div class="u-container-layout u-similar-container u-container-layout-1">
+
                 <h4 class="u-text u-text-2">Introduction of  '<%=rs.getString("cp_name")%>'</h4>
                 <ul class="u-custom-list u-text u-text-3">
                   <br>
@@ -130,6 +133,7 @@
             </div>
             <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2">
               <div class="u-container-layout u-similar-container u-container-layout-2">
+
                 <h4 class="u-text u-text-5">Preferential treatment</h4>
                 <ul class="u-custom-list u-text u-text-6">
                   <%
@@ -143,6 +147,7 @@
                   </li>
                   <%}%>
                  </ul>
+
               </div>
             </div>
             <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3">
