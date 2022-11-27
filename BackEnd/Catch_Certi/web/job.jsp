@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -6,7 +5,6 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="javax.xml.transform.Result" %>
 <%@page import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html style="font-size: 16px;" lang="en"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,45 +39,11 @@
         conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
         pstmt = conn.prepareStatement("select * from learn where work_name=?");
+        System.out.println(request.getParameter("work"));
         pstmt.setString(1,request.getParameter("work"));
 
         rs = pstmt.executeQuery();
 
-
-//        while (rs.next())
-//        {
-//            StringTokenizer sec_tok = new StringTokenizer(rs.getString("section"),"섹션");
-//            System.out.println(sec_tok);
-//            while (sec_tok.hasMoreTokens()){
-//                System.out.println(sec_tok.nextToken());
-//            }
-//        }
-
-//        ArrayList<String> name = new ArrayList<>();
-//        ArrayList<Integer> index = new ArrayList<>();
-//
-//        Map<String,Integer> ranking=new HashMap<>();
-//
-//
-//        while(rs1.next()) {
-//            //String skill=rs1.getString("skill");
-//            //System.out.println(rs1.getString("skill"));
-//            StringTokenizer skill_tok = new StringTokenizer(rs1.getString("skill"),"\n");
-//            System.out.println("\n"+skill_tok.nextToken());
-//            while (skill.hasMoreTokens()) {
-//                ranking.put(skill.nextToken(), ranking.containsKey(skill.nextToken()) ? ranking.get(skill.nextToken()) + 1 : 1);
-//            }
-//        }
-//        List<Map.Entry<String, Integer>> rank = new ArrayList<>(ranking.entrySet());
-//
-//        System.out.println(rank);
-//
-//        Collections.sort(rank, new Comparator<Map.Entry<String, Integer>>() {
-//            @Override
-//            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
-//                return o2.getValue().compareTo(o1.getValue());
-//            }
-//        });
     %>
 
 
@@ -137,7 +101,7 @@
               <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
               </a>
             </h1>
-            <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>
+            <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGOUT</a>
 
             <p class="u-text u-text-default u-text-white u-text-2">당신의 직무를 찾아드립니다~<br>
             </p>
@@ -222,7 +186,7 @@
                               i2++
                           </script>
                           <div class="cho3">
-                              <input type="checkbox" input onclick="CountChecked1(this)" id="coding" name="interest[]" value="server"/>
+                              <input type="checkbox" input onclick="CountChecked1(this)"  name="interest[]" value="server"/>
                               <label for="coding"><%=sec_tok1.nextToken()%></label>
                           </div>
                           <%}%>
@@ -262,7 +226,7 @@
                           </script>
 
                           <div class="cho3">
-                              <input type="checkbox" input onclick="CountChecked2(this)" id="coding" name="interest[]" value="server"/>
+                              <input type="checkbox" input onclick="CountChecked2(this)"  name="interest[]" value="server"/>
                               <label for="coding"><%=sec_tok2.nextToken()%></label>
                           </div>
                           <%}%>
