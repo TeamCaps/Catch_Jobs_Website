@@ -72,6 +72,7 @@
     <div class="u-clearfix u-sheet u-sheet-2">
       <h1 class="u-text u-text-default u-text-1">
         <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
+
         </a>
       </h1>
       <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>

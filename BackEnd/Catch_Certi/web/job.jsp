@@ -23,6 +23,7 @@
     <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 
+
     <%
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -82,6 +83,7 @@
     %>
 
 
+
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -131,10 +133,12 @@
         <div class="u-image u-section-row u-image-1" id="sec-37e8" data-image-width="1980" data-image-height="1200">
           <div class="u-clearfix u-sheet u-sheet-2">
             <h1 class="u-text u-text-default u-text-1">
+
               <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
               </a>
             </h1>
             <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>
+
             <p class="u-text u-text-default u-text-white u-text-2">당신의 직무를 찾아드립니다~<br>
             </p>
           </div>
@@ -147,7 +151,9 @@
       </div></header>
     <section class="u-clearfix u-gradient u-section-1" id="carousel_43ab">
       <div class="u-clearfix u-sheet u-sheet-1">
+
         <h1 class="u-align-center u-text u-text-body-alt-color u-text-1"><%=request.getParameter("work")%> </h1>
+
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
             <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-1">
@@ -166,6 +172,7 @@
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
                     <legend class="cho2">Choose your Specifications</legend>
                     <div class ="firstc">
+
                         <script>
                             var i1=0;
                         </script>
@@ -202,6 +209,7 @@
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
                     <legend class="cho2">Choose your Specifications</legend>
+
                       <div class ="firstc">
                           <script>
                               var i2=0;
@@ -219,6 +227,7 @@
                           </div>
                           <%}%>
                       </div>
+
                   </fieldset>
                 </div>
                 <div class="zt-span6 last">
@@ -239,6 +248,7 @@
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
                     <legend class="cho2">Choose your Specifications</legend>
+
                       <div class ="firstc">
                           <script>
                               var i3=0;
@@ -257,6 +267,7 @@
                           </div>
                           <%}%>
                       </div>
+
                   </fieldset>
                 </div>
                 <div class="zt-span6 last">
@@ -273,7 +284,9 @@
       </div>
     </section>
 
+
   <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c678"><div class="u-clearfix u-sheet u-sheet-1">
+
         <p class="u-small-text u-text u-text-variant u-text-1">Copyright © Caps2022</p>
       </div></footer>
     <section class="u-backlink u-clearfix u-grey-80">

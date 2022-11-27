@@ -85,7 +85,7 @@
         <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
         </a>
       </h1>
-      <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGIN</a>
+      <a href="login.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGOUT</a>
       <p class="u-text u-text-default u-text-white u-text-2">당신의 직무를 찾아드립니다~<br>
       </p>
     </div>
@@ -152,7 +152,9 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             pstmt=conn.prepareStatement("select * from users");
             rs=pstmt.executeQuery();
             Map<String,Integer> ranking=new HashMap<>();
-              while(rs.next()) {
+
+            while(rs.next()) {
+
               String work1=rs.getString("work1");
               String work2=rs.getString("work2");
               ranking.put(work1,ranking.containsKey(work1)?ranking.get(work1)+1:1);
@@ -203,23 +205,34 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
     pstmt.setString(1,Work1);
     rs=pstmt.executeQuery();
     rs.next();
-    System.out.println(rs.getString("prefer"));
+
+    StringTokenizer st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+
   %>
   <section class="u-align-center u-clearfix u-section-2" id="sec-33fe">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
-        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work1%>"><%=Work1%></a>
+
+        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp"><%=Work1%></a>
+
       </h1>
       <div class="u-expanded-width u-layout-grid u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white u-list-item-1">
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h4 class="u-align-center u-text u-text-2">
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp"><%=rs.getString("cp_name")%><br>
+
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%><br>
                 </a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+              <%
+                  while(st.hasMoreTokens()){
+              %>
+                <%=st.nextToken()%><br>
+              <%}%>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -236,10 +249,18 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <h4 class="u-align-center u-text u-text-4">
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp"><%=rs.getString("cp_name")%></a>
+
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -256,10 +277,18 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <h4 class="u-align-center u-text u-text-6">
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp"><%=rs.getString("cp_name")%></a>
+
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -276,10 +305,18 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h4 class="u-align-center u-text u-text-8">
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp"><%=rs.getString("cp_name")%></a>
+
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -303,18 +340,28 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
   <section class="u-align-center u-clearfix u-section-3" id="sec-fe66">
     <div class="u-clearfix u-sheet u-sheet-1">
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
-        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work2%>"><%=Work2%></a>
+
+        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?company=<%=rs.getInt("Num")%>"><%=Work2%></a>
+
       </h1>
       <div class="u-expanded-width u-layout-grid u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white u-list-item-1">
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h4 class="u-align-center u-text u-text-2">
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp"><%=rs.getString("cp_name")%><br>
+
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%><br>
                 </a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -329,10 +376,18 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <h4 class="u-align-center u-text u-text-4">
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp"><%=rs.getString("cp_name")%></a>
+
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -347,10 +402,18 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <h4 class="u-align-center u-text u-text-6">
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp"><%=rs.getString("cp_name")%></a>
+
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">
@@ -365,10 +428,18 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h4 class="u-align-center u-text u-text-8">
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp"><%=rs.getString("cp_name")%></a>
+
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href=""company.jsp?company=<%=rs.getInt("Num")"><%=rs.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
-              <p class="u-align-left u-text u-text-3">방송 솔루션 및 TV 앱에서 필요한 자료를 처리/전달하는 서버 시스템 개발<br>
+              <p class="u-align-left u-text u-text-3">
+                  <%
+                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                  while(st.hasMoreTokens()){
+              %>
+                  <%=st.nextToken()%><br>
+                  <%}%><br>
+
               <details>
                 <summary>전체 보기</summary>
                 <div style="margin: 10px 11px 0 169px;">

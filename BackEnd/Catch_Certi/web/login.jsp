@@ -61,6 +61,7 @@
                                 <legend class="cho2">Choose your interests</legend>
                                 <div class ="firstc">
                                     <div class="cho3">
+
                                         <input type="checkbox" input onclick="CountChecked(this)" id="서버/백엔드" name="interest[]" value="서버/백엔드"/>
                                         <label for="서버/백엔드">서버/백엔드</label>
                                     </div>
@@ -79,10 +80,12 @@
                                     <div class="cho3">
                                         <input type="checkbox" input onclick="CountChecked(this)" id="데이터 엔지니어" name="interest[]" value="데이터 엔지니어"/>
                                         <label for="데이터 엔지니어">데이터 엔지니어</label>
+
                                     </div>
                                 </div>
                                 <div class ="secondc">
                                     <div class="cho3">
+
                                         <input type="checkbox" input onclick="CountChecked(this)" id="모바일 게임" name="interest[]" value="모바일 게임"/>
                                         <label for="모바일 게임">모바일 게임</label>
                                     </div>
@@ -101,6 +104,7 @@
                                     <div class="cho3">
                                         <input type="checkbox" input onclick="CountChecked(this)" id="블록체인" name="interest[]" value="블록체인" />
                                         <label for="블록체인">블록체인</label>
+
                                     </div>
                                 </div>
                             </fieldset>
