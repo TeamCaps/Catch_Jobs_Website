@@ -39,7 +39,6 @@
         conn = DriverManager.getConnection(jdbcDriver, dbUser, dbPass);
 
         pstmt = conn.prepareStatement("select * from learn where work_name=?");
-        System.out.println(request.getParameter("work"));
         pstmt.setString(1,request.getParameter("work"));
 
         rs = pstmt.executeQuery();
@@ -253,16 +252,4 @@
 
         <p class="u-small-text u-text u-text-variant u-text-1">Copyright © Caps2022</p>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
-  
 </body></html>

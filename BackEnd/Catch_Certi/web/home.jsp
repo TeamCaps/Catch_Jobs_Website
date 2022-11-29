@@ -19,7 +19,7 @@
   <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
   <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -29,11 +29,21 @@
       "https://www.instagram.com/name",
       "https://www.chungbuk.ac.kr/site/www/main.do"
     ]
+
   }</script>
   <meta name="theme-color" content="#478ac9">
   <meta property="og:title" content="Home">
   <meta property="og:type" content="website">
+  <%!
+    int current;
+    int i=0;
+  %>
 </head>
+<script>
+  function reload_cp(){
+    $("#sec-33fe").load(location.href +" #sec-33fe");
+  }
+</script>
 <body data-home-page="Home.jsp" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en"><header class="u-align-left u-clearfix u-header u-section-row-container" id="sec-ba49"><div class="u-section-rows">
   <%
     request.setCharacterEncoding("utf-8");
@@ -96,6 +106,7 @@
 
   </div>
 </div></header>
+
 <div class="ce">
   <section class="u-align-center u-clearfix u-gradient u-section-1" id="carousel_5f81">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -110,13 +121,13 @@
               <%
                 pstmt=conn.prepareStatement("select * from users where userID=?");
                 String name=String.valueOf(session.getAttribute("user_id"));
-                System.out.println(name);
                 pstmt.setString(1,name);
                 rs=pstmt.executeQuery();
                 rs.next();
                 String Work1=rs.getString("work1");
                 String Work2=rs.getString("work2");
               %>
+
               <h4 class="u-align-center u-text u-text-default u-text-1"><%= rs.getString("userName")%></h4>
               <p class="u-align-left u-text u-text-2">email :&nbsp;&nbsp;<%= rs.getString("userID") %></p>
               <p class="u-align-left u-text u-text-3">select job :&nbsp;&nbsp;<%= rs.getString("work1") %>, <%= rs.getString("work2") %></p>
@@ -169,6 +180,15 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             });
 
           %>
+          <%
+            PreparedStatement pstmt2=conn.prepareStatement("select count(*),Num from jobs where work_name=? order by Num");
+            pstmt2.setString(1,Work1);
+            ResultSet rs2=pstmt2.executeQuery();
+            rs2.next();
+            int first_cp_num=rs2.getInt("Num");
+            int last_cp_num=rs2.getInt(1);
+            current=first_cp_num;
+          %>
           <tr style="height: 26px;">
             <th class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-1">jobs</th>
             <th class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-2">recommend work &amp; certificate</th>
@@ -200,17 +220,21 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
       </div>
     </div>
   </section>
-  <%
-    pstmt=conn.prepareStatement("select * from jobs where work_name=?");
-    pstmt.setString(1,Work1);
-    rs=pstmt.executeQuery();
-    rs.next();
 
-    StringTokenizer st=new StringTokenizer(rs.getString("cp_preview"),"\n");
-
-  %>
   <section class="u-align-center u-clearfix u-section-2" id="sec-33fe">
-    <div class="u-clearfix u-sheet u-sheet-1">
+    <%
+      pstmt=conn.prepareStatement("select * from jobs where work_name=? and Num between ? and ?");
+      pstmt.setString(1,Work1);
+      pstmt.setInt(2,current);
+      pstmt.setInt(3,current+3);
+      rs=pstmt.executeQuery();
+      rs.next();
+      current+=4;
+      if(current>last_cp_num) current=first_cp_num;
+      System.out.println(current);
+      StringTokenizer st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+    %>
+    <div class="u-clearfix u-sheet u-sheet-1" id="work1">
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
 
         <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work1%>"><%=Work1%></a>
@@ -329,6 +353,9 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           </div>
         </div>
       </div>
+    </div>
+    <div>
+      <button class="btn btn-primary btn-lg" type="button" onclick="reload_cp()">Change</button>
     </div>
   </section>
   <%
@@ -488,16 +515,4 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c678"><div class="u-clearfix u-sheet u-sheet-1">
   <p class="u-small-text u-text u-text-variant u-text-1">Copyright © Caps2022</p>
 </div></footer>
-<section class="u-backlink u-clearfix u-grey-80">
-  <a class="u-link" href="https://nicepage.com/website-design" target="_blank">
-    <span>Website Design Template</span>
-  </a>
-  <p class="u-text">
-    <span>created with</span>
-  </p>
-  <a class="u-link" href="" target="_blank">
-    <span>Website Builder Software</span>
-  </a>.
-</section>
-
 </body></html>

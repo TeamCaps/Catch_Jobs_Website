@@ -147,69 +147,9 @@
                   </li>
                   <%}%>
                  </ul>
-
+                </div>
               </div>
             </div>
-            <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-3">
-              <div class="u-container-layout u-similar-container u-container-layout-3">
-                <h4 class="u-text u-text-8">Other</h4>
-                <ul class="u-custom-list u-text u-text-9">
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div> Biscotti
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Chocolate Chip
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oatmeal Pecan
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Oat Ginger Bar
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Seasonal specials
-                  </li>
-                </ul>
-                <ul class="u-custom-list u-text u-text-10">
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div> Seasonal galletes
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Tartlets
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Banana Bread
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Bread Pudding
-                  </li>
-                  <li>
-                    <div class="u-list-icon">
-                      <div>—</div>
-                    </div>Cranberry Pecan Granola
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -217,16 +157,5 @@
     <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-c678"><div class="u-clearfix u-sheet u-sheet-1">
         <p class="u-small-text u-text u-text-variant u-text-1">Copyright © Caps2022</p>
       </div></footer>
-    <section class="u-backlink u-clearfix u-grey-80">
-      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
-      </a>
-      <p class="u-text">
-        <span>created with</span>
-      </p>
-      <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
-      </a>. 
-    </section>
   
 </body></html>

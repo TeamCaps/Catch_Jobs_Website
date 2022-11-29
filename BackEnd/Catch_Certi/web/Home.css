@@ -286,6 +286,10 @@
   .u-section-1 .u-table-1 {
     width: 340px;
   }
+  #more{
+    marin:auto;
+    text-align: center;
+  }
 }.u-section-2 .u-sheet-1 {
   min-height: 644px;
 }
