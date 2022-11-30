@@ -36,12 +36,17 @@
   <meta property="og:type" content="website">
   <%!
     int current;
+    int current2;
     int i=0;
+    int j=0;
   %>
 </head>
 <script>
   function reload_cp(){
-    $("#sec-33fe").load(location.href +" #sec-33fe");
+    $("#work1").load(window.location.href +" #work1");
+  }
+  function reload_cp2(){
+    $("#work2").load(window.location.href +" #work2");
   }
 </script>
 <body data-home-page="Home.jsp" data-home-page-title="Home" class="u-body u-xl-mode" data-lang="en"><header class="u-align-left u-clearfix u-header u-section-row-container" id="sec-ba49"><div class="u-section-rows">
@@ -106,7 +111,9 @@
 
   </div>
 </div></header>
-
+<%
+  PreparedStatement Pwork1=null;
+%>
 <div class="ce">
   <section class="u-align-center u-clearfix u-gradient u-section-1" id="carousel_5f81">
     <div class="u-clearfix u-sheet u-sheet-1">
@@ -222,19 +229,19 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
   </section>
 
   <section class="u-align-center u-clearfix u-section-2" id="sec-33fe">
-    <%
-      pstmt=conn.prepareStatement("select * from jobs where work_name=? and Num between ? and ?");
-      pstmt.setString(1,Work1);
-      pstmt.setInt(2,current);
-      pstmt.setInt(3,current+3);
-      rs=pstmt.executeQuery();
-      rs.next();
-      current+=4;
-      if(current>last_cp_num) current=first_cp_num;
-      System.out.println(current);
-      StringTokenizer st=new StringTokenizer(rs.getString("cp_preview"),"\n");
-    %>
     <div class="u-clearfix u-sheet u-sheet-1" id="work1">
+      <%
+        Pwork1=conn.prepareStatement("select * from jobs where work_name=? and Num between ? and ?");
+        Pwork1.setString(1,Work1);
+        Pwork1.setInt(2,current+4*i);
+        Pwork1.setInt(3,current+4*i+3);
+        ResultSet Rwork1=Pwork1.executeQuery();
+        Rwork1.next();
+        i++;
+        System.out.println(i);
+        if(i>=5) i=first_cp_num-1;
+        StringTokenizer st=new StringTokenizer(Rwork1.getString("cp_preview"),"\n");
+      %>
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
 
         <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work1%>"><%=Work1%></a>
@@ -246,126 +253,122 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h4 class="u-align-center u-text u-text-2">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%><br>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%><br>
                 </a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-              <%
+                <%
                   while(st.hasMoreTokens()){
-              %>
+                %>
                 <%=st.nextToken()%><br>
-              <%}%>
+                <%}%>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
           <%
-            rs.next();
+            Rwork1.next();
           %>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <h4 class="u-align-center u-text u-text-4">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%></a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork1.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
           <%
-            rs.next();
+            Rwork1.next();
           %>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <h4 class="u-align-center u-text u-text-6">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%></a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork1.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
           <%
-            rs.next();
+            Rwork1.next();
           %>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h4 class="u-align-center u-text u-text-8">
 
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%></a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork1.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
       <button class="btn btn-primary btn-lg" type="button" onclick="reload_cp()">Change</button>
     </div>
+
   </section>
   <%
-    pstmt=conn.prepareStatement("select * from jobs where work_name=?");
-    pstmt.setString(1,Work2);
-    rs=pstmt.executeQuery();
-    rs.next();
+    PreparedStatement Pwork2=null;
+    ResultSet Rwork2=null;
+    pstmt2=conn.prepareStatement("select count(*),Num from jobs where work_name=? order by Num");
+    pstmt2.setString(1,Work2);
+    rs2=pstmt2.executeQuery();
+    rs2.next();
+    int first_cp2_num=rs2.getInt("Num");
+    int last_cp2_num=rs2.getInt(1);
+    current2=first_cp2_num;
   %>
   <section class="u-align-center u-clearfix u-section-3" id="sec-fe66">
-    <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="u-clearfix u-sheet u-sheet-1" id="work2">
+      <%
+        Pwork2=conn.prepareStatement("select * from jobs where work_name=? and Num between ? and ?");
+        Pwork2.setString(1,Work2);
+        Pwork2.setInt(2,current2+4*j);
+        Pwork2.setInt(3,current2+4*j+3);
+        Rwork2=Pwork2.executeQuery();
+        Rwork2.next();
+        j++;
+        System.out.println(j);
+        if(j>=5) j=first_cp2_num-1;
+        st=new StringTokenizer(Rwork2.getString("cp_preview"),"\n");
+      %>
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
 
         <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work2%>"><%=Work2%></a>
@@ -377,107 +380,88 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h4 class="u-align-center u-text u-text-2">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%><br>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%><br>
                 </a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork2.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
-          <%rs.next();%>
+          <%Rwork2.next();%>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <h4 class="u-align-center u-text u-text-4">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%></a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork2.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
-          <%rs.next();%>
+          <%Rwork2.next();%>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <h4 class="u-align-center u-text u-text-6">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%></a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork2.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
-          <%rs.next();%>
+          <%Rwork2.next();%>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h4 class="u-align-center u-text u-text-8">
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=rs.getInt("Num")%>"><%=rs.getString("cp_name")%></a>
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%></a>
               </h4>
-              <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=rs.getString("cp_logo")%>>
+              <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
-                  <%
-                  st=new StringTokenizer(rs.getString("cp_preview"),"\n");
+                <%
+                  st=new StringTokenizer(Rwork2.getString("cp_preview"),"\n");
                   while(st.hasMoreTokens()){
-              %>
-                  <%=st.nextToken()%><br>
-                  <%}%><br>
+                %>
+                <%=st.nextToken()%><br>
+                <%}%><br>
 
-              <details>
-                <summary>전체 보기</summary>
-                <div style="margin: 10px 11px 0 169px;">
-                  - DB 개발<br> - 연동 인터페이스 개발<br> - 관리 화면 개발<br> - 관련 문서 작성 지원<br> • 고객이 운영중인 시스템에 대한 유지보수<br> - 장애에 대한 수정 개발
-                </div>
-              </details>
-              &nbsp;<br>
+
+                &nbsp;<br>
               </p>
             </div>
           </div>
         </div>
       </div>
+      <button class="btn btn-primary btn-lg" type="button" onclick="reload_cp2()">Change</button>
     </div>
   </section>
   <section class="u-clearfix u-section-4" id="carousel_0f54">
