@@ -41,10 +41,49 @@
         pstmt = conn.prepareStatement("select * from learn where work_name=?");
         pstmt.setString(1,request.getParameter("work"));
 
+        pstmt1 = conn.prepareStatement("select * from jobs where work_name=?");
+        pstmt1.setString(1,request.getParameter("work"));
+
         rs = pstmt.executeQuery();
+        rs1 = pstmt1.executeQuery();
+
+        Map<String,Integer> ranking=new HashMap<>();
+
+        String tok;
+        while(rs1.next()) {
+            StringTokenizer tok1 = new StringTokenizer(rs1.getString("skill"),"\n");
+            while (tok1.hasMoreTokens()) {
+                tok=tok1.nextToken();
+                ranking.put(tok,ranking.containsKey(tok)?ranking.get(tok)+1:1);
+            }
+        }
+        List<Map.Entry<String, Integer>> rank = new ArrayList<>(ranking.entrySet());
+        Collections.sort(rank, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+                return o2.getValue().compareTo(o1.getValue());
+            }
+        });
 
     %>
+    <script>
+        let str1 = "<%=rank.get(0).getKey()%>";
+        let str2 = "<%=rank.get(1).getKey()%>";
+        let str3 = "<%=rank.get(2).getKey()%>";
+        let str4 = "<%=rank.get(3).getKey()%>";
+        let str5 = "<%=rank.get(4).getKey()%>";
+        let str6 = "<%=rank.get(5).getKey()%>";
+        let str7 = "<%=rank.get(6).getKey()%>";
 
+        var val1 = parseInt("<%=rank.get(0).getValue()%>");
+        var val2 = parseInt("<%=rank.get(1).getValue()%>");
+        var val3 = parseInt("<%=rank.get(2).getValue()%>");
+        var val4 = parseInt("<%=rank.get(3).getValue()%>");
+        var val5 = parseInt("<%=rank.get(4).getValue()%>");
+        var val6 = parseInt("<%=rank.get(5).getValue()%>");
+        var val7 = parseInt("<%=rank.get(6).getValue()%>");
+
+    </script>
 
 
     
