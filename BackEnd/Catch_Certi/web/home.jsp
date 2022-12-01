@@ -5,8 +5,10 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="javax.xml.transform.Result" %>
 <%@page import="java.util.*"%>
+
 <%--<%@page import="home.homeDAO"%>--%>
 <%--<%@page import="home.homeDTO"%>--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html style="font-size: 16px;" lang="en"><head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -188,8 +190,13 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
               }
             });
 
+<<<<<<< HEAD
 //            homeDAO HomeDAO=new homeDAO();
 //            String skillname=HomeDAO.getSkill();
+=======
+            homeDAO HomeDAO=new homeDAO();
+            String skillname=HomeDAO.getSkill();
+>>>>>>> b3b0d2ccd11fdf6a88d2798a68cdacf9a2e480ad
           %>
 
           <tr style="height: 26px;">
@@ -200,7 +207,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <tbody class="u-table-alt-grey-15 u-table-body u-white u-table-body-1">
           <tr style="height: 46px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-3">1. <%=rank.get(0).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"><%=  %> </td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-5">2. <%=rank.get(1).getKey()%></td>
