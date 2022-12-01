@@ -189,7 +189,6 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             });
 
             homeDAO HomeDAO=new homeDAO();
-            String skillname=HomeDAO.getSkill();
           %>
 
           <tr style="height: 26px;">
@@ -200,23 +199,23 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <tbody class="u-table-alt-grey-15 u-table-body u-white u-table-body-1">
           <tr style="height: 46px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-3">1. <%=rank.get(0).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"><%=  %> </td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"><%= HomeDAO.getSkill(rank.get(0).getKey()) %> </td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-5">2. <%=rank.get(1).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-6"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-6"><%= HomeDAO.getSkill(rank.get(1).getKey()) %></td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-7">3. <%=rank.get(2).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-8"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-8"><%= HomeDAO.getSkill(rank.get(2).getKey()) %></td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-9">4. <%=rank.get(3).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-10"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-10"><%= HomeDAO.getSkill(rank.get(3).getKey()) %></td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-table-cell u-table-cell-11">5.&nbsp;<%=rank.get(4).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-12"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-12"><%= HomeDAO.getSkill(rank.get(4).getKey()) %></td>
           </tr>
           </tbody>
         </table>

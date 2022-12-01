@@ -13,17 +13,19 @@ public class homeDAO {
             e.printStackTrace();
         }
     }
-    public String getSkill(){
+    public String getSkill(String workName){
         Connection conn=null;
         PreparedStatement pstmt=null;
         ResultSet rs=null;
-        String name = null;
+        String name = "hello";
         try{
             conn=DriverManager.getConnection(jdbcUrl,dbId,dbPass);
-            pstmt=conn.prepareStatement("select skill from jobs where work_name=?");
-            pstmt.setString(1,"");
+            pstmt=conn.prepareStatement("select * from jobs where work_name=?");
+            pstmt.setString(1,workName);
+            rs= pstmt.executeQuery();
             rs.next();
             name= rs.getString("skill");
+
         }catch (Exception e){
             e.printStackTrace();
         }finally {
