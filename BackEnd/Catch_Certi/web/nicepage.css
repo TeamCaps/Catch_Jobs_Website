@@ -19933,6 +19933,7 @@ a.pswp__share--download:hover {
   padding: 10px;
   font-weight: inherit;
   position: inherit;
+    border-radius:10px;
 }
 .u-table th:empty:before,
 .u-table td:empty:before {
@@ -38015,8 +38016,9 @@ a.u-link.u-text-hover-grey-90:hover {
         .u-container-layout.u-container-layout.u-custom-color-3:before,
         .u-table-alt-custom-color-3 tr:nth-child(even)
         {
+            border-radius: 10px;
             color: #ffffff;
-            background-color: #50bcdf;
+            background-color: #009879;
         }
 
         .u-button-style.u-custom-color-3,
