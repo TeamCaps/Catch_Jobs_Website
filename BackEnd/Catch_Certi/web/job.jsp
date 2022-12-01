@@ -26,8 +26,10 @@
         Connection conn = null;
         PreparedStatement pstmt = null;
         PreparedStatement pstmt1 = null;
+        PreparedStatement pstmt2 = null;
         ResultSet rs = null;
         ResultSet rs1 = null;
+        ResultSet rs2 = null;
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -44,8 +46,12 @@
         pstmt1 = conn.prepareStatement("select * from jobs where work_name=?");
         pstmt1.setString(1,request.getParameter("work"));
 
+        pstmt2 = conn.prepareStatement("select * from learn where work_name=?");
+        pstmt2.setString(1,request.getParameter("work"));
+
         rs = pstmt.executeQuery();
         rs1 = pstmt1.executeQuery();
+        rs2 = pstmt2.executeQuery();
 
         Map<String,Integer> ranking=new HashMap<>();
 
@@ -160,7 +166,7 @@
           <div class="u-repeater u-repeater-1">
             <div class="u-align-left u-container-style u-list-item u-repeater-item u-shape-rectangle u-list-item-1">
               <div class="u-container-layout u-similar-container u-container-layout-1">
-                <h2 style="color:black; text-align:center; font-family: Roboto,sans-serif; font-weight: bolder; margin: 10px 0 0 0;">ㅇㅅㅇ</h2>
+                <h2 style="color:black; text-align:center; font-family: Roboto,sans-serif; font-weight: bolder; margin: 10px 0 0 0;">Most Needed Skills</h2>
                 <canvas id="myChart" width="400" height="400"></canvas>
               </div>  
             </div>
@@ -172,7 +178,13 @@
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
-                    <legend class="cho2">Choose your Specifications</legend>
+                      <%
+                        rs2.next();
+                        String link1 = rs2.getString("work_link");
+                      %>
+                    <legend class="cho2"><a href="<%=link1%>" title="인프런">
+                        Curriculum Progress[Click]
+                    </a></legend>
                     <div class ="firstc">
 
                         <script>
@@ -197,7 +209,7 @@
                   <p>&nbsp;</p>
                   <h3><strong>진행율</strong></h3>
                   <div class="zt-skill-bar">
-                  <div data-width="0" id = "widths">cex<span id = "result">0%</span></div>
+                  <div data-width="0" id = "widths">Progress<span id = "result">0%</span></div>
                   </div>
               </div>
             </div>
@@ -210,8 +222,13 @@
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
-                    <legend class="cho2">Choose your Specifications</legend>
-
+                      <%
+                          rs2.next();
+                          String link2 = rs2.getString("work_link");
+                      %>
+                      <legend class="cho2"><a href="<%=link2%>" title="인프런">
+                          Curriculum Progress[Click]
+                      </a></legend>
                       <div class ="firstc">
                           <script>
                               var i2=0;
@@ -236,7 +253,7 @@
                   <p>&nbsp;</p>
                   <h3><strong>진행율</strong></h3>
                   <div class="zt-skill-bar1">
-                  <div data-width="0" id = "widths1">cex<span id = "result1">0%</span></div>
+                  <div data-width="0" id = "widths1">Progress<span id = "result1">0%</span></div>
                   </div>
               </div>
             </div>
@@ -249,8 +266,13 @@
               <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
                 <div>
                   <fieldset class="cho1" data-role="controlgroup" data-type="horizontal">
-                    <legend class="cho2">Choose your Specifications</legend>
-
+                      <%
+                          rs2.next();
+                          String link3 = rs2.getString("work_link");
+                      %>
+                      <legend class="cho2"><a href="<%=link3%>" title="인프런">
+                          Curriculum Progress[Click]
+                      </a></legend>
                       <div class ="firstc">
                           <script>
                               var i3=0;
@@ -276,7 +298,7 @@
                   <p>&nbsp;</p>
                   <h3><strong>진행율</strong></h3>
                   <div class="zt-skill-bar2">
-                  <div data-width="0" id = "widths2">cex<span id = "result2">0%</span></div>
+                  <div data-width="0" id = "widths2">Progress<span id = "result2">0%</span></div>
                   </div>
               </div>
             </div>
