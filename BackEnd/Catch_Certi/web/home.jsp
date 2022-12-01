@@ -5,6 +5,8 @@
 <%@page import="java.sql.Connection"%>
 <%@ page import="javax.xml.transform.Result" %>
 <%@page import="java.util.*"%>
+<%--<%@page import="home.homeDAO"%>--%>
+<%--<%@page import="home.homeDTO"%>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html style="font-size: 16px;" lang="en"><head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,16 +188,10 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
               }
             });
 
+//            homeDAO HomeDAO=new homeDAO();
+//            String skillname=HomeDAO.getSkill();
           %>
-          <%
-            PreparedStatement pstmt2=conn.prepareStatement("select count(*),Num from jobs where work_name=? order by Num");
-            pstmt2.setString(1,Work1);
-            ResultSet rs2=pstmt2.executeQuery();
-            rs2.next();
-            int first_cp_num=rs2.getInt("Num");
-            int last_cp_num=rs2.getInt(1);
-            current=first_cp_num;
-          %>
+
           <tr style="height: 26px;">
             <th class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-1">jobs</th>
             <th class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-2">recommend work &amp; certificate</th>
@@ -227,7 +223,15 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
       </div>
     </div>
   </section>
-
+  <%
+    PreparedStatement pstmt2=conn.prepareStatement("select count(*),Num from jobs where work_name=? order by Num");
+    pstmt2.setString(1,Work1);
+    ResultSet rs2=pstmt2.executeQuery();
+    rs2.next();
+    int first_cp_num=rs2.getInt("Num");
+    int last_cp_num=rs2.getInt(1);
+    current=first_cp_num;
+  %>
   <section class="u-align-center u-clearfix u-section-2" id="sec-33fe">
     <div class="u-clearfix u-sheet u-sheet-1" id="work1">
       <%
@@ -244,7 +248,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
       %>
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
 
-        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work1%>"><%=Work1%></a>
+        <a class = "job111" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work1%>"><%=Work1%></a>
 
       </h1>
       <div class="u-expanded-width u-layout-grid u-list u-list-1">
@@ -253,7 +257,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h4 class="u-align-center u-text u-text-2">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%><br>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="<%=Rwork1.getString("work_link")%>"><%=Rwork1.getString("cp_name")%><br>
                 </a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=Rwork1.getString("cp_logo")%>>
@@ -276,7 +280,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <h4 class="u-align-center u-text u-text-4">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="<%=Rwork1.getString("work_link")%>"><%=Rwork1.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
@@ -299,7 +303,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <h4 class="u-align-center u-text u-text-6">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="<%=Rwork1.getString("work_link")%>"><%=Rwork1.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
@@ -322,7 +326,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h4 class="u-align-center u-text u-text-8">
 
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=Rwork1.getInt("Num")%>"><%=Rwork1.getString("cp_name")%></a>
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="<%=Rwork1.getString("work_link")%>"><%=Rwork1.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork1.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
@@ -371,7 +375,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
       %>
       <h1 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-1">
 
-        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work2%>"><%=Work2%></a>
+        <a class = "job111" class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="job.jsp?work=<%=Work2%>"><%=Work2%></a>
 
       </h1>
       <div class="u-expanded-width u-layout-grid u-list u-list-1">
@@ -380,7 +384,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-1">
               <h4 class="u-align-center u-text u-text-2">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%><br>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-2" href="<%=Rwork2.getString("work_link")%>"><%=Rwork2.getString("cp_name")%><br>
                 </a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-1" alt="" data-image-width="900" data-image-height="900" src=<%=Rwork2.getString("cp_logo")%>>
@@ -402,7 +406,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-2">
               <h4 class="u-align-center u-text u-text-4">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-3" href="<%=Rwork2.getString("work_link")%>"><%=Rwork2.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-2" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
@@ -423,7 +427,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
             <div class="u-container-layout u-similar-container u-container-layout-3">
               <h4 class="u-align-center u-text u-text-6">
 
-                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%></a>
+                <a class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-link u-button-style u-none u-text-palette-1-base u-btn-4" href="<%=Rwork2.getString("work_link")%>"><%=Rwork2.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-3" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
@@ -443,7 +447,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <div class="u-align-left u-border-2 u-border-black u-container-style u-list-item u-radius-15 u-repeater-item u-shape-round u-white">
             <div class="u-container-layout u-similar-container u-container-layout-4">
               <h4 class="u-align-center u-text u-text-8">
-                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="company.jsp?company=<%=Rwork2.getInt("Num")%>"><%=Rwork2.getString("cp_name")%></a>
+                <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="<%=Rwork2.getString("work_link")%>"><%=Rwork2.getString("cp_name")%></a>
               </h4>
               <img class="u-align-center u-image u-image-default u-image-4" alt="" data-image-width="2836" data-image-height="1875" src=<%=Rwork2.getString("cp_logo")%>>
               <p class="u-align-left u-text u-text-3">
