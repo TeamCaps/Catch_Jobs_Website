@@ -23,7 +23,7 @@
   <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
   <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<%--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">--%>
   <script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -67,7 +67,7 @@
     String sql;
     session=request.getSession();
   %>
-
+  <div class="pad2" id="intro"></div>
   <div class="u-grey-80 u-section-row u-section-row-1" id="sec-46aa">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
       <div class="u-social-icons u-spacing-10 u-social-icons-1">
@@ -101,10 +101,20 @@
   <div class="u-image u-section-row u-image-1" id="sec-37e8" data-image-width="1980" data-image-height="1200">
     <div class="u-clearfix u-sheet u-sheet-2">
       <h1 class="u-text u-text-default u-text-1">
-        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br>
-        </a>
+        <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-white u-btn-1" href="home.jsp">Caps<br></a>
       </h1>
       <a href="logout.jsp" class="u-border-none u-btn u-btn-round u-button-style u-hover-palette-2-base u-palette-3-base u-radius-50 u-btn-2">LOGOUT</a>
+      <ul class="nav" id="nav-override">
+        <li class="nav-item">
+          <a class="nav-link"  href="#intro">Introduction</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#job1-link-sec">Job1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#job2-link-sec">Job2</a>
+        </li>
+      </ul>
       <p class="u-text u-text-default u-text-white u-text-2">당신의 직무를 찾아드립니다~<br>
       </p>
     </div>
@@ -118,7 +128,7 @@
 <%
   PreparedStatement Pwork1=null;
 %>
-<div class="ce">
+<div class="ce" id="full">
   <section class="u-align-center u-clearfix u-gradient u-section-1" id="carousel_5f81">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-list u-list-1">
@@ -233,6 +243,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
     int last_cp_num=rs2.getInt(1);
     current=first_cp_num;
   %>
+  <div class="pad" id="job1-link-sec"></div>
   <section class="u-align-center u-clearfix u-section-2" id="sec-33fe">
     <div class="u-clearfix u-sheet u-sheet-1" id="work1">
       <%
@@ -344,10 +355,10 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary btn-lg" type="button" onclick="reload_cp()">Change</button>
+      <button class="btn btn-primary btn-lg" id="job1-btn" type="button" onclick="reload_cp()">Change</button>
     </div>
-
   </section>
+  <div class="pad" id="job2-link-sec"></div>
   <%
     PreparedStatement Pwork2=null;
     ResultSet Rwork2=null;

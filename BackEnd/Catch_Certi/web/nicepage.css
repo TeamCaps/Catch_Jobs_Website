@@ -22842,6 +22842,9 @@ h6 {
 .u-gradient {
   color: #111111;
 }
+#carousel_5f81{
+    padding-top:150px;
+}
 .u-shading,
 .u-overlap.u-overlap-contrast .u-header {
   color: #ffffff;
@@ -38632,7 +38635,14 @@ a.u-link.u-text-hover-grey-90:hover {
         ul:not(.u-unstyled)
         {
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+            float:right;
+            margin-right: 400px;
+            font-size: larger;
+            text-decoration-line: none;
+            color:yellow;
+            text-decoration: none;
+
         }
         ol
         {
@@ -38851,6 +38861,12 @@ a.u-link.u-text-hover-grey-90:hover {
 .u-header .u-image-1 {
   background-image: url("images/vbvb.jpg");
   background-position: 50% 50%;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    z-index:1;
+
 }
 
 .u-header .u-sheet-2 {
