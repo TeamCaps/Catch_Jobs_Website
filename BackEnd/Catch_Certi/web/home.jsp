@@ -6,8 +6,8 @@
 <%@ page import="javax.xml.transform.Result" %>
 <%@page import="java.util.*"%>
 
-<%--<%@page import="home.homeDAO"%>--%>
-<%--<%@page import="home.homeDTO"%>--%>
+<%@page import="home.homeDAO"%>
+<%@page import="home.homeDTO"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html style="font-size: 16px;" lang="en"><head>
@@ -190,13 +190,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
               }
             });
 
-<<<<<<< HEAD
-//            homeDAO HomeDAO=new homeDAO();
-//            String skillname=HomeDAO.getSkill();
-=======
             homeDAO HomeDAO=new homeDAO();
-            String skillname=HomeDAO.getSkill();
->>>>>>> b3b0d2ccd11fdf6a88d2798a68cdacf9a2e480ad
           %>
 
           <tr style="height: 26px;">
