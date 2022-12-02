@@ -201,23 +201,23 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           <tbody class="u-table-alt-grey-15 u-table-body u-white u-table-body-1">
           <tr style="height: 46px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-3">1. <%=rank.get(0).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"><%=  %> </td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-4"><%= HomeDAO.rankSkill(rank.get(0).getKey()) %> </td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-5">2. <%=rank.get(1).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-6"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-6"><%= HomeDAO.rankSkill(rank.get(1).getKey()) %></td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-7">3. <%=rank.get(2).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-8"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-8"><%= HomeDAO.rankSkill(rank.get(2).getKey()) %></td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-first-column u-table-cell u-table-cell-9">4. <%=rank.get(3).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-10"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-10"><%= HomeDAO.rankSkill(rank.get(3).getKey()) %></td>
           </tr>
           <tr style="height: 44px;">
             <td class="u-align-center u-border-2 u-border-grey-75 u-custom-color-3 u-table-cell u-table-cell-11">5.&nbsp;<%=rank.get(4).getKey()%></td>
-            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-12"></td>
+            <td class="u-border-2 u-border-grey-75 u-table-cell u-table-cell-12"><%= HomeDAO.rankSkill(rank.get(4).getKey()) %></td>
           </tr>
           </tbody>
         </table>
@@ -243,7 +243,6 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
         ResultSet Rwork1=Pwork1.executeQuery();
         Rwork1.next();
         i++;
-        System.out.println(i);
         if(i>=5) i=first_cp_num-1;
         StringTokenizer st=new StringTokenizer(Rwork1.getString("cp_preview"),"\n");
       %>
@@ -370,7 +369,6 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
         Rwork2=Pwork2.executeQuery();
         Rwork2.next();
         j++;
-        System.out.println(j);
         if(j>=5) j=first_cp2_num-1;
         st=new StringTokenizer(Rwork2.getString("cp_preview"),"\n");
       %>
