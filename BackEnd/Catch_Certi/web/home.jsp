@@ -23,7 +23,6 @@
   <meta name="generator" content="Nicepage 5.0.7, nicepage.com">
   <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
   <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i">
-<%--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">--%>
   <script type="application/ld+json">{
     "@context": "http://schema.org",
     "@type": "Organization",
@@ -172,7 +171,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           </div>
         </div>
       </div>
-      <h2 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-4">Best Jobs of 2022</h2>
+      <h2 class="u-custom-font u-font-playfair-display u-text u-text-body-alt-color u-text-4">Popular Jobs</h2>
       <div class="u-table u-table-responsive u-table-1">
         <table class="u-table-entity">
           <colgroup>
@@ -355,7 +354,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary btn-lg" id="job1-btn" type="button" onclick="reload_cp()">Change</button>
+      <button class="snip1535" id="job1-btn" type="button" onclick="reload_cp()">Change</button>
     </div>
   </section>
   <div class="pad" id="job2-link-sec"></div>
@@ -475,7 +474,7 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
           </div>
         </div>
       </div>
-      <button class="btn btn-primary btn-lg" type="button" onclick="reload_cp2()">Change</button>
+      <button class="snip1535" type="button" onclick="reload_cp2()">Change</button>
     </div>
   </section>
   <section class="u-clearfix u-section-4" id="carousel_0f54">
